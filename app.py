@@ -29,12 +29,12 @@ posts_schema = Publicacion_Schema(many = True)
 class RecursoListarPublicaciones(Resource):
     def send_simple_message():
 	return requests.post(
-            "https://api.mailgun.net/v3/" + domain_name + "/messages",
-          		auth=("api", api_key),
-          		data={"from": "Excited User <mailgun@sandboxc8505dca72c843bb9d4b5e8e78af30b1.mailgun.org>",
-                            "to": ["jmauricio_1107@hotmail.com"],
-                            "subject": "Hello",
-                            "text": "Testing some Mailgun awesomness!"})
+            	"https://api.mailgun.net/v3/" + domain_name + "/messages",
+          	    auth=("api", api_key),
+          	    data={"from": "Excited User <mailgun@sandboxc8505dca72c843bb9d4b5e8e78af30b1.mailgun.org>",
+                                "to": ["jmauricio_1107@hotmail.com"],
+                                "subject": "Hello",
+                                "text": "Testing some Mailgun awesomness!"})
     def get(self):
 	send_simple_message()
         publicaciones = Publicacion.query.all()
