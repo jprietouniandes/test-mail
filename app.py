@@ -25,6 +25,7 @@ posts_schema = Publicacion_Schema(many = True)
 
 class RecursoListarPublicaciones(Resource):
     def get(self):
+	send_simple_message()
         publicaciones = Publicacion.query.all()
         return posts_schema.dump(publicaciones)
     
@@ -72,5 +73,4 @@ def send_simple_message():
 			"text": "Testing some Mailgun awesomness!"})
 
 if __name__ == '__main__':
-    send_simple_message()
     app.run(debug=True)
