@@ -37,7 +37,7 @@ class RecursoListarPublicaciones(Resource):
            })
 
     def get(self):
-		send_simple_message()
+	send_simple_message()
         publicaciones = Publicacion.query.all()
         return posts_schema.dump(publicaciones)
     
