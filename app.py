@@ -13,6 +13,7 @@ api = Api(app)
 api_key = os.environ.get('MAILGUN_API_KEY')
 domain_name = os.environ.get('MAILGUN_DOMAIN')
 
+
 class Publicacion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     titulo = db.Column( db.String(50) )
@@ -26,6 +27,14 @@ post_schema = Publicacion_Schema()
 posts_schema = Publicacion_Schema(many = True)
 
 class RecursoListarPublicaciones(Resource):
+    def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/" + domain_name + "/messages",
+		auth=("api", api_key),
+		data={"from": "Excited User <mailgun@sandboxc8505dca72c843bb9d4b5e8e78af30b1.mailgun.org>",
+			"to": ["jmauricio_1107@hotmail.com"],
+			"subject": "Hello",
+			"text": "Testing some Mailgun awesomness!"})
     def get(self):
 	send_simple_message()
         publicaciones = Publicacion.query.all()
@@ -65,14 +74,7 @@ class RecursoUnaPublicacion(Resource):
 api.add_resource(RecursoListarPublicaciones, '/publicaciones')     
 api.add_resource(RecursoUnaPublicacion, '/publicaciones/<int:id_publicacion>')
 
-def send_simple_message():
-	return requests.post(
-		"https://api.mailgun.net/v3/" + domain_name + "/messages",
-		auth=("api", api_key),
-		data={"from": "Excited User <mailgun@sandboxc8505dca72c843bb9d4b5e8e78af30b1.mailgun.org>",
-			"to": ["jmauricio_1107@hotmail.com"],
-			"subject": "Hello",
-			"text": "Testing some Mailgun awesomness!"})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
