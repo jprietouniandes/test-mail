@@ -4,7 +4,7 @@ import smtplib
 import json
 from email.mime.text import MIMEText
 
-MAILGUN_SMTP_LOGIN = "postmaster@revolunet.mailgun.org"
+MAILGUN_SMTP_LOGIN = "postmaster@sandboxc8505dca72c843bb9d4b5e8e78af30b1.mailgun.org"
 MAILGUN_SMTP_PASSWORD = "secret"
 
 def send_message_via_smtp(from_, to, mime_string):
@@ -47,4 +47,4 @@ Works like a charm :)"""
         'source': '/some/random/info'
     }
 
-    send_mailgun_message('ju@revolunet.com', 'test@revolunet.com', 'Mailgun SMTP test', text, tag='tests', variables=user_data)
+    send_mailgun_message('app212061870@heroku.com', 'test@revolunet.com', 'Mailgun SMTP test', text, tag='tests', variables=user_data)
