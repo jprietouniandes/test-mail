@@ -36,7 +36,7 @@ class RecursoListarPublicaciones(Resource):
             'text': 'Testing some Mailgun awesomness!',
             })
 
-	def get(self):
+    def get(self):
         publicaciones = Publicacion.query.all()
         return posts_schema.dump(publicaciones)
     
