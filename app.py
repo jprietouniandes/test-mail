@@ -33,8 +33,8 @@ class RecursoListarPublicaciones(Resource):
                              , auth=('api', api_key), data={
             'from': 'Excited User <mailgun@' + domain_name + '>',
             'to': ['jmauricio_1107@hotmail.com'],
-            'subject': 'Hello',
-            'text': 'Testing some Mailgun awesomness!',
+            'subject': 'Voz publicada',
+            'text': 'Tu voz ha sido publicada en la página del concurso',
             })
         publicaciones = Publicacion.query.all()
         return posts_schema.dump(publicaciones)
