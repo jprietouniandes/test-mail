@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
+api_key = os.environ.get('API_KEY')
 
 class Publicacion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -61,5 +62,15 @@ class RecursoUnaPublicacion(Resource):
 api.add_resource(RecursoListarPublicaciones, '/publicaciones')     
 api.add_resource(RecursoUnaPublicacion, '/publicaciones/<int:id_publicacion>')
 
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandboxc8505dca72c843bb9d4b5e8e78af30b1/messages",
+		auth=("api", api_key),
+		data={"from": "Excited User <mailgun@sandboxc8505dca72c843bb9d4b5e8e78af30b1>",
+			"to": ["jmauricio_1107@hotmail.com"],
+			"subject": "Hello",
+			"text": "Testing some Mailgun awesomness!"})
+
 if __name__ == '__main__':
+    send_simple_message()
     app.run(debug=True)
