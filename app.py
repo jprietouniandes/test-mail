@@ -29,13 +29,13 @@ posts_schema = Publicacion_Schema(many = True)
 
 class RecursoListarPublicaciones(Resource):
     def get(self):
-        requests.post('https://api.mailgun.net/v3/' + domain_name + '/messages'
-                             , auth=('api', api_key), data={
-            'from': 'Concurso de voces <mailgun@' + domain_name + '>',
-            'to': ['jmauricio_1107@hotmail.com'],
-            'subject': 'Voz publicada',
-            'text': 'Tu voz ha sido publicada en la página del concurso',
-            })
+        #requests.post('https://api.mailgun.net/v3/' + domain_name + '/messages'
+        #                     , auth=('api', api_key), data={
+        #    'from': 'Concurso de voces <mailgun@' + domain_name + '>',
+        #    'to': ['jmauricio_1107@hotmail.com'],
+        #    'subject': 'Voz publicada',
+        #    'text': 'Tu voz ha sido publicada en la página del concurso',
+        #    })
         publicaciones = Publicacion.query.all()
         return posts_schema.dump(publicaciones)
     
