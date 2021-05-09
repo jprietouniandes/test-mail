@@ -1,13 +1,5 @@
-GEM
-  remote: https://rubygems.org/
-  specs:
-    rails_autoscale_agent (0.10.2)
+source 'https://rubygems.org'
 
-PLATFORMS
-  ruby
+ruby '2.6.1'
 
-DEPENDENCIES
-  rails_autoscale_agent
-
-BUNDLED WITH
-   2.1.4
+gem 'rails_autoscale_agent'
